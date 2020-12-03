@@ -1,0 +1,42 @@
+{
+    "name": "PT searcher",
+    "version" : "1.0",
+    "manifest_version" : 2,
+    "description": "To search the torrents across the PT sites.",
+
+    "browser_action": 
+    {
+        "default_icon" : {"500" : "icon.png"},
+        "default_title": "pt searcher",
+        "default_popup": "popup.html"
+    },
+
+
+
+    "options_page": "options.html",
+
+    "permissions": 
+    [
+        "<all_urls>",
+        "storage",
+        "tabs",
+        "contextMenus"
+    ],
+
+    "commands": 
+    {
+        "_execute_browser_action": 
+        {
+            "suggested_key": 
+            {
+                "default": "Ctrl+Shift+F",
+                "mac": "MacCtrl+Shift+F"
+            },
+            "description": "Opens hello.html"
+        }
+    },
+
+    "background":{
+        "scripts" :  ["background.js"]
+    }
+}
