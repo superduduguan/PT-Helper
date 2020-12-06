@@ -9,11 +9,26 @@ chrome.extension.onConnect.addListener(function(port) {
     //listen for message
     port.onMessage.addListener(function(msg) {
         console.log("message recieved " + msg);
-        for(site in sites){
-            if(sites[site]){
-                chrome.tabs.create({url: sites[site] + msg});
+        chrome.tabs.query({
+            active: true,
+            currentWindow: true
+        }, function(tabs) {
+            var tabindex = tabs[0].index;
+            console.log(tabindex);
+            for(site in sites){
+                if(sites[site]){
+                    var newindex = parseInt(tabindex) + parseInt(site) + 1;
+                    console.log(newindex);
+                    if(site == 0){
+                        chrome.tabs.create({url: sites[site] + msg, index:newindex});
+                    }
+                    else{
+                        chrome.tabs.create({url: sites[site] + msg, index:newindex, active:false});
+                    }
+                }
             }
-        }
+        });
+        
     });
 });
 
@@ -23,16 +38,24 @@ chrome.contextMenus.create({
 	contexts: ['selection','link'], // 只有当选中文字时才会出现此右键菜单
 	onclick: function(params)
 	{
-        for(site in sites){
-            if(sites[site]){
-                if(site == 0){
-                    chrome.tabs.create({url: sites[site] + encodeURI(params.selectionText)});
+        chrome.tabs.query({
+            active: true,
+            currentWindow: true
+        }, function(tabs) {
+            var tabindex = tabs[0].index;
+            console.log(tabindex);
+            for(site in sites){
+                if(sites[site]){
+                    var newindex = parseInt(tabindex) + parseInt(site) + 1;
+                    console.log(newindex);
+                    if(site == 0){
+                        chrome.tabs.create({url: sites[site] + encodeURI(params.selectionText), index:newindex});
+                    }
+                    else{
+                        chrome.tabs.create({url: sites[site] + encodeURI(params.selectionText), index:newindex, active:false});
+                    }
                 }
-                else{
-                    chrome.tabs.create({url: sites[site] + encodeURI(params.selectionText), active:false});
-                }
-                
             }
-        }
+        });
     }
 });

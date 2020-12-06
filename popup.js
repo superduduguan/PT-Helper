@@ -40,7 +40,7 @@ window.onload = function()
 
 
 //TODO: 挖掘与聚合
-//TODO: 划词 + 快捷键
+//TODO: 划词快捷键
 //TODO: 豆瓣跳转
 //TODO: Top4 展示
 //TODO: 转种子
