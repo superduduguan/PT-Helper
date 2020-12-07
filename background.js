@@ -1,8 +1,9 @@
 site = "http://nanyangpt.com/torrents.php?search=\nhttp://npupt.com/torrents.php?search=\nhttps://bt.byr.cn/torrents.php?search=\nhttps://pt.m-team.cc/torrents.php?search=\n";
 sites = site.split('\n')
 
-chrome.extension.onConnect.addListener(function(port) {
-    //connecting
+// get popup and create
+chrome.extension.onConnect.addListener(function(port){
+    // connecting
     console.log("Connected");
     // port.postMessage(sites)
 
@@ -32,6 +33,7 @@ chrome.extension.onConnect.addListener(function(port) {
     });
 });
 
+// right click
 var index = new Array();
 chrome.contextMenus.create({
 	title: 'Search on PT sites：%s', // %s表示选中的文字
@@ -59,3 +61,4 @@ chrome.contextMenus.create({
         });
     }
 });
+

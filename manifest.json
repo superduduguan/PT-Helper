@@ -6,12 +6,12 @@
 
     "browser_action": 
     {
-        "default_icon" : {"500" : "icon.png"},
+        "default_icon" : {"16" : "icon16.png", "48" : "icon16.png", "128" : "icon16.png"},
         "default_title": "pt searcher",
         "default_popup": "popup.html"
     },
 
-
+    "icons" : {"16" : "icon16.png", "48" : "icon16.png", "128" : "icon16.png"},
 
     "options_page": "options.html",
 
@@ -20,7 +20,8 @@
         "<all_urls>",
         "storage",
         "tabs",
-        "contextMenus"
+        "contextMenus",
+        "declarativeContent"
     ],
 
     "commands": 
@@ -38,5 +39,12 @@
 
     "background":{
         "scripts" :  ["background.js"]
-    }
+    },
+
+    "content_scripts": [
+        {
+            "matches": ["<all_urls>"],
+            "js": ["myscript.js"]
+        }
+    ]
 }
