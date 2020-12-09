@@ -43,8 +43,9 @@
 
     "content_scripts": [
         {
-            "matches": ["<all_urls>"],
+            "matches": ["https://movie.douban.com/subject/*"],
             "js": ["myscript.js"]
+            
         }
     ]
 }
