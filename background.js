@@ -38,8 +38,32 @@ chrome.runtime.onMessage.addListener(function(request, sender)
 {
 	console.log('收到来自content-script的消息：');
     console.log(request, sender);
-    if(request.greeting == 'douban'){
+    if(request.site == 'doubansub'){
         var name = sender.tab.title.slice(start=0, end=-4);
+        console.log(name);
+        chrome.tabs.query({
+            active: true,
+            currentWindow: true
+        }, function(tabs) {
+            var tabindex = tabs[0].index;
+            console.log(tabindex);
+            for(site in sites){
+                if(sites[site]){
+                    var newindex = parseInt(tabindex) + parseInt(site) + 1;
+                    console.log(newindex);
+                    if(site == 0){
+                        chrome.tabs.create({url: sites[site] + name, index:newindex});
+                    }
+                    else{
+                        chrome.tabs.create({url: sites[site] + name, index:newindex, active:false});
+                    }
+                }
+            }
+        });
+    }
+
+    if(request.site == 'doubanlist'){
+        var name = request.name
         console.log(name);
         chrome.tabs.query({
             active: true,

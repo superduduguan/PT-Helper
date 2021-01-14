@@ -39,9 +39,8 @@ window.onload = function()
 };
 
 //TODO: options
-//TODO: 划词悬浮窗
-//TODO: 转种子
 //TODO: 挖掘与聚合
+//TODO: 转种子
 
 
 // nanyang ： document.querySelector("#outer > table > tbody > tr > td > table > tbody > tr:nth-child(XXX) > td:nth-child(2) > table > tbody > tr > td:nth-child(1) > a > b")

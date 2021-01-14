@@ -44,8 +44,16 @@
     "content_scripts": [
         {
             "matches": ["https://movie.douban.com/subject/*"],
-            "js": ["myscript.js"]
-            
+            "js": ["doubansubject.js"]
+        },
+
+        {
+            "matches": ["https://www.douban.com/search?*"],
+            "js": ["doubanlist.js"]
         }
+
     ]
+
+
+
 }

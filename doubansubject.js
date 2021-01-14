@@ -11,6 +11,6 @@ document.getElementById("interest_sectl").appendChild(button);
 button.addEventListener('click', function()
     {
 
-        chrome.runtime.sendMessage({greeting: 'douban'}, function() {});
+        chrome.runtime.sendMessage({site: 'doubansub'}, function() {});
 
     }, false);
