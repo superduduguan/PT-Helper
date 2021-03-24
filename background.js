@@ -1,4 +1,4 @@
-site = "http://nanyangpt.com/torrents.php?search=\nhttp://npupt.com/torrents.php?search=\nhttps://bt.byr.cn/torrents.php?search=\nhttps://pt.m-team.cc/torrents.php?search=\n";
+site = "http://nanyangpt.com/torrents.php?search=\nhttp://npupt.com/torrents.php?search=\nhttps://bt.byr.cn/torrents.php?search=\nhttps://pt.m-team.cc/torrents.php?search=\nhttps://pt.eastgame.org/torrents.php?search=\n";
 sites = site.split('\n')
 
 // get popup and create
