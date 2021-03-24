@@ -1,3 +1,4 @@
+window.onload=function(){
 var num = 0
 var names = new Array();
 var btns = new Array();
@@ -37,3 +38,4 @@ for (let i = 0; i < btns.length; i += 1){
 
 
 
+}

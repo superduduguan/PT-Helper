@@ -51,9 +51,8 @@
             "matches": ["https://www.douban.com/search?*"],
             "js": ["doubanlist.js"]
         },
-
         {
-            "matches": ["https://movie.douban.com/people/177132374/wish"],
+            "matches": ["https://movie.douban.com/people/177132374/wish*"],
             "js": ["mymovie.js"]
         }
 
