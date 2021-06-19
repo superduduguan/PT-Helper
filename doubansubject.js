@@ -12,5 +12,5 @@ button.addEventListener('click', function()
     {
 
         chrome.runtime.sendMessage({site: 'doubansub'}, function() {});
-
+        
     }, false);

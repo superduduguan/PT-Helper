@@ -1,4 +1,4 @@
-site = "http://nanyangpt.com/torrents.php?search=\nhttp://npupt.com/torrents.php?search=\nhttps://bt.byr.cn/torrents.php?search=\nhttps://pt.m-team.cc/torrents.php?search=\nhttps://pt.eastgame.org/torrents.php?search=\n";
+site = "http://nanyangpt.com/torrents.php?search=\nhttp://npupt.com/torrents.php?search=\nhttps://bt.byr.cn/torrents.php?search=\nhttps://kp.m-team.cc/torrents.php?search=\nhttps://pt.eastgame.org/torrents.php?search=\n";
 sites = site.split('\n')
 
 // get popup and create
@@ -40,7 +40,10 @@ chrome.runtime.onMessage.addListener(function(request, sender)
     console.log(request, sender);
     if(request.site == 'doubansub'){
         var name = sender.tab.title.slice(start=0, end=-4);
+        var id = sender.tab.url.split('/')[4]
         console.log(name);
+        console.log(id);
+        $.post("https://movie.douban.com/j/subject/"+id+"/interest",{ck:'No3N',interest:'wish',foldcollect:'U'},function(data,status){console.log(status);})
         chrome.tabs.query({
             active: true,
             currentWindow: true
@@ -59,12 +62,17 @@ chrome.runtime.onMessage.addListener(function(request, sender)
                     }
                 }
             }
+            
         });
+        
     }
 
     if(request.site == 'doubanlist'){
         var name = request.name
+        var id = request.id;
         console.log(name);
+        console.log(id);
+        $.post("https://movie.douban.com/j/subject/"+id+"/interest",{ck:'No3N',interest:'wish',foldcollect:'U'},function(data,status){console.log(status);})
         chrome.tabs.query({
             active: true,
             currentWindow: true
@@ -85,6 +93,7 @@ chrome.runtime.onMessage.addListener(function(request, sender)
             }
         });
     }
+    return true;
 });
 
 

@@ -38,22 +38,22 @@
     },
 
     "background":{
-        "scripts" :  ["background.js"]
+        "scripts" :  ["background.js", "jquery-1.11.0.js"]
     },
 
     "content_scripts": [
         {
             "matches": ["https://movie.douban.com/subject/*"],
-            "js": ["doubansubject.js"]
+            "js": ["doubansubject.js", "jquery-1.11.0.js"]
         },
 
         {
             "matches": ["https://www.douban.com/search?*"],
-            "js": ["doubanlist.js"]
+            "js": ["doubanlist.js", "jquery-1.11.0.js" ]
         },
         {
             "matches": ["https://movie.douban.com/people/177132374/wish*"],
-            "js": ["mymovie.js"]
+            "js": ["mymovie.js", "jquery-1.11.0.js"]
         }
 
     ]
