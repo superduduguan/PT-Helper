@@ -19,12 +19,16 @@ class App extends React.Component{
 	}
 
     buttonclick1(){
+		if(this.state.inputval1 == ''){
+			alert('Err: No input!')
+			return
+		}
 		if(this.state.list1.length == 6){
-			alert('Up to 6 websites are accepted')
+			alert('Err: Up to 6 websites are accepted')
 			return
 		}
 		if(this.state.list1.length > this.state.list2.length ){
-			alert('Please finish the last address first')
+			alert('Err: Please finish the last address first')
 			return
 		}
 		let newList1 = [...this.state.list1, this.state.inputval1]
@@ -33,17 +37,25 @@ class App extends React.Component{
     }
     buttonclick2(){
 		if(this.state.list2.length == 6){
-			alert('Up to 6 websites are accepted')
+			alert('Err: Up to 6 websites are accepted')
 			return
 		}
 
 		var newList2 = [...this.state.list2, this.state.inputval2]
 		if(newList2.length > this.state.list1.length){
-			alert('Please input the name first')
+			alert('Err: Please input the name first')
 			return
 		}
 		var newListckb = [...this.state.listckb, 'true']
         this.setState({list2: [...newList2], listckb: [...newListckb]})
+
+		if(this.state.list2.length - this.state.list1.length == -1){
+			
+			this.refs.input1.value=' ';
+			this.setState({inputval1: ''});
+			this.refs.input2.value=' ';
+			this.setState({inputval2: ''});
+		}
     }
 	
 	ckb(index, e){
@@ -60,15 +72,15 @@ class App extends React.Component{
         return (
             <div>
                 <div style={{display: 'inline', width:'30%'}}>
-					<h3 style={{display: 'inline', fontSize:'1.5em'}}>Name:    </h3>
-                    <input value={this.state.inputval1} onChange={this.inputchange1.bind(this)} style={{width:'30%', fontSize:'2em'}} />
-                    <button onClick={this.buttonclick1.bind(this)} style={{width:'2.5em', fontSize:'2em'}}>add</button>
+					<h3 style={{display: 'inline', fontSize:'1.75em'}}>Name:    </h3>
+                    <input value={this.state.inputval1} onChange={this.inputchange1.bind(this)} style={{width:'30%', fontSize:'1.75em'}} id='input1' ref='input1' />
+                    <button onClick={this.buttonclick1.bind(this)} style={{width:'2.5em', fontSize:'1.75em'}}>add</button>
                 </div>
 				
 				<div style={{display: 'inline', width:'30%'}}>
-					<h3 style={{display: 'inline', marginLeft:'1.5em', fontSize:'1.5em'}}>URL:    </h3>
-					<input value={this.state.inputval2} onChange={this.inputchange2.bind(this)} style={{width:'30%', fontSize:'2em'}} />
-					<button onClick={this.buttonclick2.bind(this)} style={{width:'2.5em', fontSize:'2em'}}>add</button>
+					<h3 style={{display: 'inline', marginLeft:'1.75em', fontSize:'1.5em'}}>URL:    </h3>
+					<input value={this.state.inputval2} onChange={this.inputchange2.bind(this)} style={{width:'30%', fontSize:'1.75em'}} id='input2' ref='input2' />
+					<button onClick={this.buttonclick2.bind(this)} style={{width:'2.5em', fontSize:'1.75em'}}>add</button>
 				</div>
 				<div style={{marginLeft: '0'}}>
 					{
@@ -92,4 +104,4 @@ class App extends React.Component{
     }
 }
 export default App;
-// TODO: delete; OPTIONS; logo
+// TODO: delete; options; connect
