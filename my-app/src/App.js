@@ -6,7 +6,7 @@ class App extends React.Component{
         this.state = {
             list1:['NanyangPT', 'NpuPT ', 'ByrPT'],
 			list2:['http://nanyangpt.com/', 'http://npupt.com/', 'https://bt.byr.cn/'],
-			listckb:['true', 'true', 'ture'],
+			listckb:[true, true, true],
             inputval1: '',
 			inputval2: ''
         }
@@ -19,11 +19,11 @@ class App extends React.Component{
 	}
 
     buttonclick1(){
-		if(this.state.inputval1 == ''){
+		if(this.state.inputval1 === ''){
 			alert('Err: No input!')
 			return
 		}
-		if(this.state.list1.length == 6){
+		if(this.state.list1.length === 6){
 			alert('Err: Up to 6 websites are accepted')
 			return
 		}
@@ -32,11 +32,11 @@ class App extends React.Component{
 			return
 		}
 		let newList1 = [...this.state.list1, this.state.inputval1]
-		let newListckb = [...this.state.listckb, 'true']
+		let newListckb = [...this.state.listckb, true]
         this.setState({list1: [...newList1], listckb: [...newListckb]})
     }
     buttonclick2(){
-		if(this.state.list2.length == 6){
+		if(this.state.list2.length === 6){
 			alert('Err: Up to 6 websites are accepted')
 			return
 		}
@@ -46,10 +46,10 @@ class App extends React.Component{
 			alert('Err: Please input the name first')
 			return
 		}
-		var newListckb = [...this.state.listckb, 'true']
+		var newListckb = [...this.state.listckb, true]
         this.setState({list2: [...newList2], listckb: [...newListckb]})
 
-		if(this.state.list2.length - this.state.list1.length == -1){
+		if(this.state.list2.length - this.state.list1.length === -1){
 			
 			this.refs.input1.value=' ';
 			this.setState({inputval1: ''});
@@ -59,12 +59,21 @@ class App extends React.Component{
     }
 	
 	ckb(index, e){
-		
 		let newListckb = [...this.state.listckb]
 		newListckb[index] = e.target.checked
+		
 		this.setState({
 			listckb: [...newListckb]
 		})
+	}
+	
+	dlt(index, e){
+		
+		const newList1x = [...this.state.list1];
+		const newList2x = [...this.state.list2];
+		newList1x.splice(index, 1);
+		newList2x.splice(index, 1);
+		this.setState({list1: newList1x, list2: newList2x});
 		
 	}
 
@@ -89,9 +98,11 @@ class App extends React.Component{
 							{
 								return (
 								<div style={{marginTop: '2em', marginLeft: '20%', fontSize: '150%'}} key={-index-1000}>
+									<img src="./Delete.png" height="20px" onClick={this.dlt.bind(this, index)} alt='delete'></img><span>    </span>
 									<input type="checkbox" key={index} value={item} style={{zoom:'150%'}} onChange={this.ckb.bind(this, index)} checked={this.state.listckb[index]}/>
-									<span>    </span><span className='Back' style={{border: 'cyan solid', borderRadius: '40px', background:'#E0FFFF', padding:'0.4em'}} key={-index-1}>{item}</span>   =>   <span className='Back' style={{border: 'cyan solid', borderRadius: '40px', background:'#E0FFFF', padding:'0.4em'}} key={-index-100}>{this.state.list2[index]}</span>
-								</div>)
+									<span>    </span><span className='Back' style={this.state.listckb[index]? {border: 'cyan solid', borderRadius: '40px', background:'#E0FFFF', padding:'0.4em'}: {padding:'0.4em', borderRadius: '40px'}} key={-index-1}>{item}</span><span style={this.state.listckb[index]? {color:'cyan', marginLeft:'4px', fontWeight:'1000'}: {}}>     =>   </span><span className='Back' style={this.state.listckb[index]? {border: 'cyan solid', borderRadius: '40px', background:'#E0FFFF', padding:'0.4em'}: {borderRadius: '40px', padding:'0.4em'}} key={-index-100}>{this.state.list2[index]}</span>
+								</div>
+								)
 								
 							}
 						)
