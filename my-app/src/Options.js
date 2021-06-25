@@ -13,7 +13,12 @@ class Options extends React.Component{
 		let ckb = [...this.state.ckb];
 		ckb[index] = e.target.checked
 		this.setState({ckb: ckb});
+		this.tellhim(ckb);
 		
+	}
+	
+	tellhim(a){
+		this.props.tellme(a);
 	}
 
 	render() {

@@ -39,24 +39,26 @@ class Urls extends React.Component{
 		let newList1 = [...this.state.list1, this.state.inputval1]
 		let newListckb = [...this.state.listckb, true]
         this.setState({list1: [...newList1], listckb: [...newListckb]})
+		this.tellhimckb(newListckb);
     }
+	
     buttonclick2(){
 		if(this.state.inputval2 === ''){
-			alert('Err: No input!')
+			alert('Err: Empty input.')
 			return
 		}
 		if(this.state.list2.length === 6){
-			alert('Err: Up to 6 websites are accepted')
+			alert('Err: Up to 6 websites are accepted.')
 			return
 		}
 
 		var newList2 = [...this.state.list2, this.state.inputval2]
 		if(newList2.length > this.state.list1.length){
-			alert('Err: Please input the name first')
+			alert('Err: Please comfirm the name first.')
 			return
 		}
-		var newListckb = [...this.state.listckb, true]
-        this.setState({list2: [...newList2], listckb: [...newListckb]})
+		
+        this.setState({list2: [...newList2]})
 
 		if(this.state.list2.length - this.state.list1.length === -1){
 			
@@ -65,6 +67,12 @@ class Urls extends React.Component{
 			this.input2ref.current.value=' ';
 			this.setState({inputval2: ''});
 		}
+		let return1 = this.state.list1;
+		let return2 = this.state.list2;
+	
+		this.tellhim1(return1);
+		this.tellhim2(return2);
+		
     }
 	
 	ckb(index, e){
@@ -74,16 +82,31 @@ class Urls extends React.Component{
 		this.setState({
 			listckb: [...newListckb]
 		})
+		this.tellhimckb(newListckb);
+	}
+	
+	tellhim1(a){
+		this.props.tellme1(a);
+	}
+	tellhim2(a){
+		this.props.tellme2(a);
+	}
+	tellhimckb(a){
+		this.props.tellmeckb(a);
 	}
 	
 	dlt(index, e){
 		
 		const newList1x = [...this.state.list1];
 		const newList2x = [...this.state.list2];
+		const newListckb = [...this.state.listckb]
 		newList1x.splice(index, 1);
 		newList2x.splice(index, 1);
-		this.setState({list1: newList1x, list2: newList2x});
-		
+		newListckb.splice(index, 1);
+		this.setState({list1: newList1x, list2: newList2x, listckb: newListckb});
+		this.tellhim1(newList1x);
+		this.tellhim2(newList2x);
+		this.tellhimckb(newListckb);
 	}
 
 	render() {

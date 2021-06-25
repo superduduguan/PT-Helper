@@ -1,28 +1,35 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Urls from './Urls';
-import Options from './Options';
+import Both from './both';
 import reportWebVitals from './reportWebVitals';
 
-console.log(Urls)
-ReactDOM.render(
-  <React.StrictMode>
-    <Urls />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+var ALL = [, , ,]
 
-ReactDOM.render(
-  <React.StrictMode>
-    <Options ref="opt"/>
-  </React.StrictMode>,
-  document.getElementById('root2')
-);
-
-var x = document.getElementById('btn')
-x.onclick = function(){
-	return this.refs.demo.state.
+function TellMeAll(a){
+	ALL = a
 }
+
+ReactDOM.render(
+  <React.StrictMode>
+    <Both TellMeAll={TellMeAll.bind(this)}/>
+  </React.StrictMode>,
+  document.getElementById('main')
+);
+
+var a = document.getElementById('btn');
+a.onclick = function(){
+	
+	alert('saved!');
+	console.log(ALL[0]);
+	console.log(ALL[1]);
+	console.log(ALL[2]);
+	console.log(ALL[3]);
+}
+
+// var x = document.getElementById('btn')
+// x.onclick = function(){
+// 	return this.refs.demo.state.
+// }
 
 
 
