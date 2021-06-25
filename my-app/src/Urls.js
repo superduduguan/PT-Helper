@@ -1,4 +1,12 @@
 import React from 'react';
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+
+const MySwal = withReactContent(Swal)
+
+
+
+
 class Urls extends React.Component{
 
     constructor(props) {
@@ -22,18 +30,25 @@ class Urls extends React.Component{
 	inputchange2(e){
 	    this.setState({inputval2: e.target.value});
 	}
+	fire(a, b, c){
+		MySwal.fire({didOpen: () => {
+			MySwal.clickConfirm()}}).then(() => {
+		  return MySwal.fire(a, <h3 style={{margin: '0'}}>{b}</h3>, c);
+		})
+	}
 
     buttonclick1(){
 		if(this.state.inputval1 === ''){
-			alert('Err: No input!')
+
+			this.fire("ERROR", "Empty input.", "error");
 			return
 		}
 		if(this.state.list1.length === 6){
-			alert('Err: Up to 6 websites are accepted')
+			this.fire("ERROR", "Up to 6 websites are accepted.", "error");
 			return
 		}
 		if(this.state.list1.length > this.state.list2.length ){
-			alert('Err: Please finish the last address first')
+			this.fire("ERROR", "Please confirm the last address first.", "error");
 			return
 		}
 		let newList1 = [...this.state.list1, this.state.inputval1]
@@ -44,17 +59,17 @@ class Urls extends React.Component{
 	
     buttonclick2(){
 		if(this.state.inputval2 === ''){
-			alert('Err: Empty input.')
+			this.fire("ERROR", "Empty input.", "error");
 			return
 		}
 		if(this.state.list2.length === 6){
-			alert('Err: Up to 6 websites are accepted.')
+			this.fire("ERROR", "Up to 6 websites are accepted.", "error");
 			return
 		}
 
 		var newList2 = [...this.state.list2, this.state.inputval2]
 		if(newList2.length > this.state.list1.length){
-			alert('Err: Please comfirm the name first.')
+			this.fire("ERROR", "Please confirm the name first.", "error");
 			return
 		}
 		

@@ -2,13 +2,21 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Both from './both';
 import reportWebVitals from './reportWebVitals';
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 
-var ALL = [, , ,]
-
+var ALL = []; 
+const MySwal = withReactContent(Swal)
 function TellMeAll(a){
 	ALL = a
+	console.log(a);
 }
-
+function fire(a, b, c){
+	MySwal.fire({didOpen: () => {
+		MySwal.clickConfirm()}}).then(() => {
+	  return MySwal.fire(a, <h3 style={{margin: '0'}}>{b}</h3>, c);
+	})
+}
 ReactDOM.render(
   <React.StrictMode>
     <Both TellMeAll={TellMeAll.bind(this)}/>
@@ -19,11 +27,13 @@ ReactDOM.render(
 var a = document.getElementById('btn');
 a.onclick = function(){
 	
-	alert('saved!');
+	fire("Saved Successfully.", "", "success");
+	alert(ALL);
 	console.log(ALL[0]);
 	console.log(ALL[1]);
 	console.log(ALL[2]);
 	console.log(ALL[3]);
+	
 }
 
 // var x = document.getElementById('btn')
