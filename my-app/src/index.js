@@ -4,7 +4,7 @@ import Urls from './Urls';
 import Options from './Options';
 import reportWebVitals from './reportWebVitals';
 
-
+console.log(Urls)
 ReactDOM.render(
   <React.StrictMode>
     <Urls />
@@ -14,10 +14,15 @@ ReactDOM.render(
 
 ReactDOM.render(
   <React.StrictMode>
-    <Options />
+    <Options ref="opt"/>
   </React.StrictMode>,
   document.getElementById('root2')
 );
+
+var x = document.getElementById('btn')
+x.onclick = function(){
+	return this.refs.demo.state.
+}
 
 
 

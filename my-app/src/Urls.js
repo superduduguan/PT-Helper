@@ -8,7 +8,8 @@ class Urls extends React.Component{
 			list2:['http://nanyangpt.com/', 'http://npupt.com/', 'https://bt.byr.cn/'],
 			listckb:[true, true, true],
             inputval1: '',
-			inputval2: ''
+			inputval2: '',
+			save: false
         };
 		this.input1ref = React.createRef();
 		this.input2ref = React.createRef();
@@ -86,6 +87,7 @@ class Urls extends React.Component{
 	}
 
 	render() {
+		
         return (
             <div>
                 <div style={{display: 'inline', width:'30%'}}>

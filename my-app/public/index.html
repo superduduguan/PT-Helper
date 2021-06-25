@@ -13,12 +13,15 @@
     <title>PTHelper Settings</title>
   </head>
   <style type="text/css">
+  body{
+	  font-size: 100%;
+  }
   div{
 	  margin: 0;
   }
   #top {
       background-color: rgb(78, 208, 255);
-	  height : 2em;
+	  height : 1.83em;
 	  padding-top : 0em;
 	  padding-bottom : 0.5em;
 	  font-weight: 600;
@@ -37,7 +40,7 @@
   }
   #bottom{
 	  background-color: #3c3c3c;
-	  height :120px;
+	  height :112.5px;
 	  color : white;
 	  border-bottom-left-radius: 40px;
 	  border-bottom-right-radius: 40px;
@@ -143,13 +146,49 @@
       margin-top: 0.5em;
       
   }
+  #save{
+	  background-color: aliceblue;
+	  padding-top: 0px;
+	  padding-bottom: 1.5px;
+  }
+
+    .yongyin {
+     width:80px !important;
+     text-align:center;
+     line-height:100%;
+	 padding-top:0.15em;
+     padding-bottom:0.15em;
+     font-size: 19PX;
+	 font-weight: 600;
+     font-style: normal;
+     text-decoration:none;
+     margin:2px;
+     vertical-align:text-bottom;
+     zoom:1.2;
+
+     border-radius:50px;
+     box-shadow:0px 1px 2px rgba(0,0,0,0.2);
+     text-shadow:0px 1px 1px rgba(0,0,0,0.3);
+     color:#000000;
+     border:0.2px solid #2299ff;
+     background-repeat:repeat;
+     background-size:auto;
+     background-origin:padding-box;
+     background-clip:padding-box;
+     background-color:rgb(78, 208, 255);
+     background: linear-gradient(to bottom, #eeeff9 0%,rgb(78, 208, 255) 100%);
+}
+ 
+.yongyin:hover {
+    background: #268DFF;
+}
 
   </style>
   
   <body>
     <div id='top'>
         <div id="logo" ><img src='logo.png' width='80px' /></div>
-        <div id="title" align='center' >PTHelper Settings</div> 
+        <div id="title" align='center'  >PTHelper Settings</div> 
     </div>
     
     <div id='main'>
@@ -162,6 +201,9 @@
 			<div id="root2"></div>
 		</div>
 		
+	</div>
+	<div id='save' align='center'>
+		<button id = btn type="button" class="yongyin" style="width:100px; height:30px;">SAVE</button>
 	</div>
 	<div id='bottom'>
 		<!-- <img src="./Delete.png" height="55px"> -->
