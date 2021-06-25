@@ -23,9 +23,9 @@ class Options extends React.Component{
                 	(item, index)=>
                 	{
                 		return(
-							<div style={{marginTop:'2em', fontSize:'1.5em', paddingLeft: '3%'}}>
+							<div style={{marginTop:'2em', fontSize:'1.5em', paddingLeft: '3%'}} key={(index+index)*5}>
 								<input type="checkbox" key={index*index} value={item} style={{zoom:'150%'}} onChange={this.ckb.bind(this, index)} checked={this.state.ckb[index]}/>
-								<span className='Back' key={index*index+1} style={this.state.ckb[index]? {marginLeft:'3%', border: 'cyan solid', borderRadius: '40px', background:'#E0FFFF', padding:'0.4em'}: {marginLeft:'3%', padding:'0.4em', borderRadius: '40px'}} key={-index-1}>{item}</span>
+								<span style={this.state.ckb[index]? {marginLeft:'3%', border: 'cyan solid', borderRadius: '40px', background:'#E0FFFF', padding:'0.4em'}: {marginLeft:'3%', padding:'0.4em', borderRadius: '40px'}} key={-index*index-1}>{item}</span>
 							</div>
 					
 							
