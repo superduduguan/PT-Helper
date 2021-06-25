@@ -1,5 +1,5 @@
 import React from 'react';
-class App extends React.Component{
+class Urls extends React.Component{
 
     constructor(props) {
         super(props);
@@ -114,5 +114,5 @@ class App extends React.Component{
         );
     }
 }
-export default App;
-// TODO: delete; options; connect
+export default Urls;
+// TODO: options; connect
