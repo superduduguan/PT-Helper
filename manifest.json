@@ -6,15 +6,15 @@
 
     "browser_action": 
     {
-        "default_icon" : {"16" : "icon16.png", "48" : "icon16.png", "128" : "icon16.png"},
+        "default_icon" : {"16" : "assets/icon16.png", "48" : "assets/icon16.png", "128" : "assets/icon16.png"},
         "default_title": "pt searcher",
-        "default_popup": "popup.html"
+        "default_popup": "popup/popup.html"
     },
 
-    "icons" : {"16" : "icon16.png", "48" : "icon16.png", "128" : "icon16.png"},
+    "icons" : {"16" : "assets/icon16.png", "48" : "assets/icon16.png", "128" : "assets/icon16.png"},
 
 
-    "options_page": "my-app/build/index.html",
+    "options_page": "options/build/index.html",
 
 
     "permissions": 
@@ -35,7 +35,7 @@
                 "default": "Ctrl+Shift+F",
                 "mac": "MacCtrl+Shift+F"
             },
-            "description": "Opens hello.html"
+            "description": "Open searching page"
         }
     },
 
