@@ -5,7 +5,7 @@ import './both.css'
 
 
 var name = ['NanyangPT', 'NpuPT ', 'ByrPT'];        
-var address = ['http://nanyangpt.com/', 'http://npupt.com/', 'https://bt.byr.cn/'];
+var add = ['http://nanyangpt.com/', 'http://npupt.com/', 'https://bt.byr.cn/'];
 var ckb = [true, true, true];
 var opt = [true, true, true, true, true];
 
@@ -13,45 +13,42 @@ class Both extends React.Component{
 
     constructor(props) {
         super(props);
-        this.state = {name: [], address: [], ckb:[], opt:[]};
+        
     }
 	
 	// synchronous states
+	
+	tellname(newname){
 
-	
-	
-	
-	tellme_1(state){
-		this.setState({name: state});
-		name = [...state];
-		this.props.TellMeAll([name, address, ckb, opt]);
+        name = [...newname];
+        console.log(name);
 	}
-	tellme_2(state){
-		this.setState({address: state});
-		address = [...state]
-		this.props.TellMeAll([name, address, ckb, opt]);
+
+	telladd(newaddress){
+        add = newaddress;
+        console.log(add);
 	}
-	tellme_ckb(state){
-		ckb = [...state]
-		this.setState({ckb: state});
-		this.props.TellMeAll([name, address, ckb, opt]);
+	tellckb(newckb){
+        ckb = newckb;
+        console.log(ckb);
 	}
-	tellme2(state){
-		opt = [...state]
-		this.setState({opt: state});
-		this.props.TellMeAll([name, address, ckb, opt]);
-	}
-	
+
+	tellopts(newoptions){
+        opt = newoptions; 
+        console.log(opt);
+    }
+
 	render() {
+        
 		return(
 		<div>
 			<div id='url'>
 				<div id='urltop' align="center"><h1>PT Websites</h1></div>
-				<div id="root"><Urls tellme1={this.tellme_1.bind(this)} tellme2={this.tellme_2.bind(this)} tellmeckb={this.tellme_ckb.bind(this)}/></div>
+				<div id="root"><Urls tellname={this.tellname.bind(this)} telladd={this.telladd.bind(this)} tellckb={this.tellckb.bind(this)} add={add} name={name} ckb={ckb} /></div>
 			</div>
 			<div id='options'>
 				<div id='opttop' align="center"><h1>Helper Options</h1></div>
-				<div id="root2"><Options tellme={this.tellme2.bind(this)} /></div>
+				<div id="root2"><Options tellopts={this.tellopts.bind(this)} opt={opt} /></div>
 			</div>
 		</div>
 

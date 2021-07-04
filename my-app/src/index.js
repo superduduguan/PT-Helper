@@ -17,6 +17,8 @@ function fire(a, b, c){
 	  return MySwal.fire(a, <h3 style={{margin: '0'}}>{b}</h3>, c);
 	})
 }
+
+
 ReactDOM.render(
   <React.StrictMode>
     <Both TellMeAll={TellMeAll.bind(this)}/>
