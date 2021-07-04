@@ -5,12 +5,23 @@ import reportWebVitals from './reportWebVitals';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 
-var ALL = []; 
-const MySwal = withReactContent(Swal)
-function TellMeAll(a){
-	ALL = a
-	console.log(a);
+var name = ['NanyangPT', 'NpuPT ', 'ByrPT'];        
+var add = ['http://nanyangpt.com/', 'http://npupt.com/', 'https://bt.byr.cn/'];
+var ckb = [true, true, true];
+var opt = [true, true, true, true, true];
+var all = {name: name, add: add, ckb: ckb};
+var ALL = {all: all, opt: opt};
+function tellindexurl(newall){
+	ALL.all = newall
+	console.log(newall);
 }
+
+function tellindexopt(newopt){
+	ALL.opt = newopt
+	console.log(newopt);
+}
+
+const MySwal = withReactContent(Swal)
 function fire(a, b, c){
 	MySwal.fire({didOpen: () => {
 		MySwal.clickConfirm()}}).then(() => {
@@ -21,27 +32,16 @@ function fire(a, b, c){
 
 ReactDOM.render(
   <React.StrictMode>
-    <Both TellMeAll={TellMeAll.bind(this)}/>
+    <Both tellindexurl={tellindexurl.bind(this)} tellindexopt={tellindexopt.bind(this)} ALL={ALL}/>
   </React.StrictMode>,
   document.getElementById('main')
 );
 
 var a = document.getElementById('btn');
 a.onclick = function(){
-	
+	console.log(ALL);
 	fire("Saved Successfully.", "", "success");
-	alert(ALL);
-	console.log(ALL[0]);
-	console.log(ALL[1]);
-	console.log(ALL[2]);
-	console.log(ALL[3]);
-	
 }
-
-// var x = document.getElementById('btn')
-// x.onclick = function(){
-// 	return this.refs.demo.state.
-// }
 
 
 
