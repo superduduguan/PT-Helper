@@ -1,5 +1,9 @@
-site = "http://nanyangpt.com/torrents.php?search=\nhttp://npupt.com/torrents.php?search=\nhttps://bt.byr.cn/torrents.php?search=\nhttps://kp.m-team.cc/torrents.php?search=\nhttps://pt.eastgame.org/torrents.php?search=\n";
-sites = site.split('\n')
+var dname = ['NanyangPT', 'NpuPT ', 'ByrPT'];        
+var dadd = ['http://nanyangpt.com/', 'http://npupt.com/', 'https://bt.byr.cn/'];
+var dckb = [true, true, true];
+var dopt = [true, true, true, true, true];
+var deflt = {name: dname, add: dadd, ckb: dckb, opt: dopt};
+
 
 // get popup and create
 chrome.extension.onConnect.addListener(function(port){
@@ -16,18 +20,27 @@ chrome.extension.onConnect.addListener(function(port){
         }, function(tabs) {
             var tabindex = tabs[0].index;
             console.log(tabindex);
-            for(site in sites){
-                if(sites[site]){
-                    var newindex = parseInt(tabindex) + parseInt(site) + 1;
-                    console.log(newindex);
-                    if(site == 0){
-                        chrome.tabs.create({url: sites[site] + msg, index:newindex});
-                    }
-                    else{
-                        chrome.tabs.create({url: sites[site] + msg, index:newindex, active:false});
+            chrome.storage.sync.get({data: deflt}, function (obj){
+                var sites =new Array()
+                var adds = obj.data.add;
+                var ckb = obj.data.ckb;
+                adds.map((item, index)=>{if(ckb[index]){sites[index] = 'https://' + item + '/torrents.php?search='}});
+                console.log(sites)
+                for(site in sites){
+                    if(sites[site]){
+                        var newindex = parseInt(tabindex) + parseInt(site) + 1;
+                        console.log(newindex);
+                        if(site == 0){
+                            chrome.tabs.create({url: sites[site] + msg, index:newindex});
+                        }
+                        else{
+                            chrome.tabs.create({url: sites[site] + msg, index:newindex, active:false});
+                        }
                     }
                 }
-            }
+            });
+
+
         });
         
     });
@@ -61,18 +74,29 @@ chrome.runtime.onMessage.addListener(function(request, sender)
         }, function(tabs) {
             var tabindex = tabs[0].index;
             console.log(tabindex);
-            for(site in sites){
-                if(sites[site]){
-                    var newindex = parseInt(tabindex) + parseInt(site) + 1;
-                    // console.log(newindex);
-                    if(site == 0){
-                        chrome.tabs.create({url: sites[site] + name, index:newindex});
-                    }
-                    else{
-                        chrome.tabs.create({url: sites[site] + name, index:newindex, active:false});
+
+            chrome.storage.sync.get({data: deflt}, function (obj){
+                var sites =new Array()
+                var adds = obj.data.add;
+                var ckb = obj.data.ckb;
+                adds.map((item, index)=>{if(ckb[index]){sites[index] = 'https://' + item + '/torrents.php?search='}});
+                console.log(sites)
+                for(site in sites){
+                    if(sites[site]){
+                        var newindex = parseInt(tabindex) + parseInt(site) + 1;
+                        // console.log(newindex);
+                        if(site == 0){
+                            chrome.tabs.create({url: sites[site] + name, index:newindex});
+                        }
+                        else{
+                            chrome.tabs.create({url: sites[site] + name, index:newindex, active:false});
+                        }
                     }
                 }
-            }
+            });
+            
+
+            
             
         });
         
@@ -90,18 +114,29 @@ chrome.runtime.onMessage.addListener(function(request, sender)
         }, function(tabs) {
             var tabindex = tabs[0].index;
             console.log(tabindex);
-            for(site in sites){
-                if(sites[site]){
-                    var newindex = parseInt(tabindex) + parseInt(site) + 1;
-                    console.log(newindex);
-                    if(site == 0){
-                        chrome.tabs.create({url: sites[site] + name, index:newindex});
-                    }
-                    else{
-                        chrome.tabs.create({url: sites[site] + name, index:newindex, active:false});
+            chrome.storage.sync.get({data: deflt}, function (obj){
+                var sites =new Array()
+                var adds = obj.data.add;
+                var ckb = obj.data.ckb;
+                adds.map((item, index)=>{if(ckb[index]){sites[index] = 'https://' + item + '/torrents.php?search='}});
+                console.log(sites)
+                for(site in sites){
+                    if(sites[site]){
+                        var newindex = parseInt(tabindex) + parseInt(site) + 1;
+                        console.log(newindex);
+                        if(site == 0){
+                            chrome.tabs.create({url: sites[site] + name, index:newindex});
+                        }
+                        else{
+                            chrome.tabs.create({url: sites[site] + name, index:newindex, active:false});
+                        }
                     }
                 }
-            }
+            });
+
+            
+
+
         });
     }
     return true;
@@ -121,18 +156,32 @@ chrome.contextMenus.create({
         }, function(tabs) {
             var tabindex = tabs[0].index;
             console.log(tabindex);
-            for(site in sites){
-                if(sites[site]){
-                    var newindex = parseInt(tabindex) + parseInt(site) + 1;
-                    console.log(newindex);
-                    if(site == 0){
-                        chrome.tabs.create({url: sites[site] + encodeURI(params.selectionText), index:newindex});
-                    }
-                    else{
-                        chrome.tabs.create({url: sites[site] + encodeURI(params.selectionText), index:newindex, active:false});
+
+            chrome.storage.sync.get({data: deflt}, function (obj){
+                var sites =new Array()
+                var adds = obj.data.add;
+                var ckb = obj.data.ckb;
+                dltcnt = 0
+                adds.map((item, index)=>{if(ckb[index]){sites[index-dltcnt] = 'https://' + item + '/torrents.php?search='} else{dltcnt += 1}});
+
+                for(site in sites){
+                    console.log(sites[site] + encodeURI(params.selectionText))
+                    if(sites[site]){
+                        var newindex = parseInt(tabindex) + parseInt(site) + 1;
+                        console.log(site)
+                        console.log(newindex);
+                        if(site == 0){
+                            chrome.tabs.create({url: sites[site] + encodeURI(params.selectionText), index:newindex});
+                        }
+                        else{
+                            chrome.tabs.create({url: sites[site] + encodeURI(params.selectionText), index:newindex, active:false});
+                        }
                     }
                 }
-            }
+            });
+            
+
+
         });
     }
 });
